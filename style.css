@@ -1,0 +1,160 @@
+/* Reset */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* Body with animated gradient background */
+body {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(-45deg, #f8d9e0, #d0eafc, #c2f0d6, #fce2c8);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  color: #333;
+  min-height: 100vh;
+  text-align: center;
+}
+
+/* Header */
+header {
+  padding: 2rem 1rem;
+}
+header h1 {
+  font-size: 2.5rem;
+  color: #ff4d6d;
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+  animation: fadeInDown 1s ease;
+}
+header p {
+  font-size: 1.2rem;
+  color: #444;
+  margin-top: 8px;
+  animation: fadeInUp 1s ease;
+}
+
+/* Timeline layout */
+.timeline {
+  width: 90%;
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+/* Each memory block */
+.memory {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.memory.left {
+  flex-direction: row;   /* content left, photo right */
+}
+.memory.right {
+  flex-direction: row-reverse; /* content right, photo left */
+}
+
+/* Memory content (text box) */
+.memory-content {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 1.5rem;
+  border-radius: 20px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+  animation: fadeInUp 1s ease;
+}
+.memory-content h2 {
+  color: #ff4d6d;
+  margin-bottom: 0.5rem;
+}
+.memory-content p {
+  color: #333;
+  line-height: 1.5;
+}
+
+/* Memory photo */
+.memory-photo {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  cursor: pointer;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.memory-photo img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.memory-photo:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.35);
+}
+.memory-photo:hover img {
+  transform: scale(1.1);
+}
+
+/* Lightbox */
+.lightbox {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.9);
+  animation: fadeIn 0.5s ease;
+}
+.lightbox-content {
+  margin: auto;
+  display: block;
+  max-width: 80%;
+  max-height: 80%;
+  border-radius: 15px;
+  animation: zoomIn 0.5s ease;
+}
+#caption {
+  margin-top: 15px;
+  color: #fff;
+  font-size: 1rem;
+  animation: fadeIn 1s ease;
+}
+.close {
+  position: absolute;
+  top: 20px; right: 40px;
+  color: #fff;
+  font-size: 40px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+.close:hover { color: #ff4d6d; }
+
+/* Background & fade animations */
+@keyframes gradientBG {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+@keyframes fadeInDown {
+  from {opacity: 0; transform: translateY(-20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+@keyframes fadeInUp {
+  from {opacity: 0; transform: translateY(20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+@keyframes zoomIn {
+  from {transform: scale(0.7);}
+  to {transform: scale(1);}
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .memory {
+    flex-direction: column !important; /* stack content + photo */
+  }
+}
